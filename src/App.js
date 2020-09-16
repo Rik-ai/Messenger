@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import styled from './App.module.css';
 import Sidebar from './Sidebar/Sidebar';
 import Chat from './Chat/Chat';
 
 function App() {
   return (
-    <div className="app">
-      <div className='app__body'>
+    <div className={styled.app}>
+      <div className={styled.body}>
       <Sidebar />
       <Chat />
       </div>

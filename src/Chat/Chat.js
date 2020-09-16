@@ -1,10 +1,10 @@
 import React from 'react'
-import './Chat.module.css'
+import styled from './Chat.module.css'
 
 
 const Chat = ()=> {
     return (
-        <div className='chat'>
+        <div className={styled.chat}>
            <h1>I am the chat</h1> 
         </div>
     )

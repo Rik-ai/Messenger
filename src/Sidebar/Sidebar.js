@@ -1,11 +1,15 @@
 import React from 'react'
-import './Sidebar.module.css'
-
+import styled from './Sidebar.module.css'
+import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 
 const Sidebar = ()=>{
     return(
-        <div className='sidebar'>
-        <h1> I am a Sidebar</h1>
+        <div className={styled.sidebar}>
+            <div className={styled.header}>
+                <div className={styled.headerRight}>
+                    <DonutLargeIcon />
+                </div>
+            </div>
         </div>
     )
 }
