@@ -45,8 +45,8 @@ const Chat = ()=> {
         <div className={styled.icon}><InsertEmoticon /></div>
         <form>
           <input
-          placeholder='Type a message'
-          type='text' 
+            placeholder='Type a message'
+            type='text' 
           />
           <button type='submit'>Send a message</button>
         </form>
