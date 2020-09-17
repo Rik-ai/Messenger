@@ -57,3 +57,27 @@
     font-weight: 800;
     font-size: xx-small;
 }
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    border-top: 1px solid lightgray;
+}
+.footer > form {
+    flex: 1;
+    display: flex;
+}
+.footer > form > input {
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+}
+.footer > form > button {
+    display: none;
+}
+.icon {
+    padding: 10px;
+    color: gray;
+}
