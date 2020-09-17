@@ -55,3 +55,8 @@ border-right: 1px solid lightgray;
     outline-width: 0;
     margin-left: 10px;
 }
+.chats {
+    flex: 1;
+    background-color: white;
+    overflow: scroll;
+}
