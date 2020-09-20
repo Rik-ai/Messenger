@@ -39,7 +39,7 @@ useEffect(() => {
     <div className={styled.app}>
       <div className={styled.body}>
         <Sidebar />
-        <Chat />
+        <Chat messages={messages} />
       </div>
     </div>
   )

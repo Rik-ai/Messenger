@@ -5,7 +5,7 @@ import styled from './Chat.module.css'
 import MicIcon from '@material-ui/icons/Mic'
 
 
-const Chat = ()=> {
+const Chat = ({messages})=> {
   return (
     <div className={styled.chat}>
       <div className={styled.header}>
@@ -28,17 +28,13 @@ const Chat = ()=> {
         </div>
       </div>
       <div className={styled.body}>
-        <p className={styled.message}>
-          <span className={styled.name}>Ivan</span>
-            This is a message
-          <span className={styled.timestamp}>Timestamp</span>
-        </p>
-
-        <p className={styled.reciever}>
-          <span className={styled.name}>Ivan</span>
-            This is a message
-          <span className={styled.timestamp}>Timestamp</span>
-        </p>
+        {messages.map((message) => (
+          <p className={`${styled.message} ${message.received && styled.received}`}>
+          <span className={styled.name}>{message.name}</span>
+            {message.message}
+          <span className={styled.timestamp}>{message.timestamp}</span>
+          </p>
+        ))}
       </div>
 
       <div className={styled.footer}>
