@@ -32,7 +32,10 @@ const Sidebar = ()=>{
           <div className={styled.SvgIcon}>
             <SearchOutlined />
           </div>
-          <input placeholder='Search or start new chat' type='text'/>
+          <input 
+          placeholder='Search or start new chat' 
+          type='text'
+          />
         </div>
       </div>
       <div className={styled.chats}>
