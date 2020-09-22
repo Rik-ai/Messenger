@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from './App.module.css'
 import Sidebar from './Sidebar/Sidebar'
 import Chat from './Chat/Chat'
@@ -8,38 +9,38 @@ import axios from'./axios'
 function App() {
   const [messages, setMessages] = useState([])
 
-useEffect(() => {
+  useEffect(() => {
   axios.get('/messages/sync')
     .then(response=>{
       setMessages(response.data)
     })
 }, [])
-
-
   useEffect(() => {
     const pusher = new Pusher('2cff151ee712296fed25', {
       cluster: 'eu'
   });
-
   const channel = pusher.subscribe('messages');
     channel.bind('inserted', (newMessage) => {
       setMessages([...messages, newMessage])
   });
-
     return ()=>{
       channel.unbind_all()
       channel.unsubscribe()
     }
   }, [messages])
-
-  console.log(messages)
-
   
   return (
     <div className={styled.app}>
       <div className={styled.body}>
-        <Sidebar />
-        <Chat messages={messages} />
+      <Router>
+          <Sidebar />
+            <Switch>
+              <Route path="/rooms/:roomId">
+                <Chat messages={messages}/>
+              </Route>
+              <Route path="/">{/* <Chat /> */}</Route>
+            </Switch>
+          </Router>
       </div>
     </div>
   )

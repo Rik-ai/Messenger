@@ -1,9 +1,19 @@
+import firebase from 'firebase'
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyCpOOhWH2-SI0tG8eavQAi6oYLPExRzQg0',
-  authDomain: 'messenger-mern.firebaseapp.com',
-  databaseURL: 'https://messenger-mern.firebaseio.com',
-  projectId: 'messenger-mern',
-  storageBucket: 'messenger-mern.appspot.com',
-  messagingSenderId: '68189595382',
-  appId: '1:68189595382:web:dd8a978c8711e15b356ed7'
-}
+  apiKey: "AIzaSyDx9y3tsIV8J-UW04SdEkpJXlqK1VtSRvU",
+  authDomain: "messenger-4075a.firebaseapp.com",
+  databaseURL: "https://messenger-4075a.firebaseio.com",
+  projectId: "messenger-4075a",
+  storageBucket: "messenger-4075a.appspot.com",
+  messagingSenderId: "383938610219",
+  appId: "1:383938610219:web:013e865e4a545a1038966e"
+};
+
+const firebaseApp = firebase.initializeApp(firebaseConfig)
+const db = firebaseApp.firestore()
+const auth = firebase.auth()
+const provider = new firebase.auth.GoogleAuthProvider()
+
+export { auth, provider }
+export default db
