@@ -68,13 +68,20 @@ const Chat = ({messages})=> {
         </div>
       </div>
       <div className={styled.body}>
-      {messages.map((message) => (
-            <p className={`${styled.message} ${message.name === user.displayName && styled.received}`}>
-            <span className={styled.name}>{message.name}</span>
-              {message.message}
-            <span className={styled.timestamp}>{message.timestamp}</span>
-            </p>
-          ))}
+      {messages.map((message) => {
+
+if(roomName === message.rooms) {
+  return(
+    <p className={`${styled.message} ${message.name === user.displayName && styled.received}`}>
+    <span className={styled.name}>{message.name}</span>
+      {message.message}
+    <span className={styled.timestamp}>{message.timestamp}</span>
+    </p>
+  )
+} 
+        
+           
+})}
       </div>
       <div className={styled.footer}>
         <div className={styled.icon}><InsertEmoticon /></div>
