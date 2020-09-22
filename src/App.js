@@ -5,9 +5,11 @@ import Sidebar from './Sidebar/Sidebar'
 import Chat from './Chat/Chat'
 import Pusher from 'pusher-js'
 import axios from'./axios'
+import Login from './Login/Login'
 
 function App() {
   const [messages, setMessages] = useState([])
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
   axios.get('/messages/sync')
@@ -31,6 +33,9 @@ function App() {
   
   return (
     <div className={styled.app}>
+          {!user ? (
+      <Login/>
+    ):(
       <div className={styled.body}>
       <Router>
           <Sidebar />
@@ -42,6 +47,7 @@ function App() {
             </Switch>
           </Router>
       </div>
+    )}
     </div>
   )
 }
