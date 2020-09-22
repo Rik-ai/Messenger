@@ -15,7 +15,7 @@ const Chat = ({messages})=> {
    const [seed, setSeed] = useState('')
    const {roomId} = useParams()
    const [roomName, setRoomName] = useState('')
-   const {user} = useStateValue()
+   const [{user}, dispatch] = useStateValue()
    const date = new Date()
    
 
@@ -68,13 +68,13 @@ const Chat = ({messages})=> {
         </div>
       </div>
       <div className={styled.body}>
-        {messages.map((message) => (
-          <p className={`${styled.message} ${message.name === user.displayName && styled.received}`}>
-          <span className={styled.name}>{message.name}</span>
-            {message.message}
-          <span className={styled.timestamp}>{message.timestamp}</span>
-          </p>
-        ))}
+      {messages.map((message) => (
+            <p className={`${styled.message} ${message.name === user.displayName && styled.received}`}>
+            <span className={styled.name}>{message.name}</span>
+              {message.message}
+            <span className={styled.timestamp}>{message.timestamp}</span>
+            </p>
+          ))}
       </div>
       <div className={styled.footer}>
         <div className={styled.icon}><InsertEmoticon /></div>
