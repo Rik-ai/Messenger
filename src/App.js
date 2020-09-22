@@ -6,10 +6,12 @@ import Chat from './Chat/Chat'
 import Pusher from 'pusher-js'
 import axios from'./axios'
 import Login from './Login/Login'
+import { useStateValue } from './StateProvider'
 
 function App() {
   const [messages, setMessages] = useState([])
-  const [user, setUser] = useState(null)
+  const [{user}, dispatch] = useStateValue()
+
 
   useEffect(() => {
   axios.get('/messages/sync')

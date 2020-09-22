@@ -6,6 +6,7 @@ import MicIcon from '@material-ui/icons/Mic'
 import axios from '../axios'
 import { useParams } from 'react-router-dom'
 import db from '../firebase'
+import { useStateValue } from '../StateProvider'
 
 
 
@@ -15,6 +16,7 @@ const Chat = ({messages})=> {
    const [seed, setSeed] = useState('')
    const {roomId} = useParams()
    const [roomName, setRoomName] = useState('')
+   const [{user}, dispatch] = useStateValue()
 
    useEffect(() => {
     if(roomId){
@@ -34,7 +36,7 @@ const Chat = ({messages})=> {
 
     await axios.post('/messages/new', {
       message: input,
-      name: "DEMO_APP",
+      name: user.displayName,
       timestamp: "Just now",
       received: true
     })
@@ -64,8 +66,7 @@ const Chat = ({messages})=> {
       </div>
       <div className={styled.body}>
         {messages.map((message) => (
-          // ${message.name === user.displayName && styled.received}
-          <p className={`${styled.message} ${message.received && styled.received}`}>
+          <p className={`${styled.message} ${message.name === user.displayName && styled.received}`}>
           <span className={styled.name}>{message.name}</span>
             {message.message}
           <span className={styled.timestamp}>{message.timestamp}</span>
