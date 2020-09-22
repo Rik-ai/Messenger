@@ -10,7 +10,7 @@ import { useStateValue } from './StateProvider'
 
 function App() {
   const [messages, setMessages] = useState([])
-  const [{user}, dispatch] = useStateValue()
+  const {user} = useStateValue()
 
 
   useEffect(() => {

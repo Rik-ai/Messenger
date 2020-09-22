@@ -9,14 +9,16 @@ import db from '../firebase'
 import { useStateValue } from '../StateProvider'
 
 
-
 const Chat = ({messages})=> {
 
    const [input, setInput] = useState('')
    const [seed, setSeed] = useState('')
    const {roomId} = useParams()
    const [roomName, setRoomName] = useState('')
-   const [{user}, dispatch] = useStateValue()
+   const {user} = useStateValue()
+   const date = new Date()
+   
+
 
    useEffect(() => {
     if(roomId){
@@ -37,20 +39,21 @@ const Chat = ({messages})=> {
     await axios.post('/messages/new', {
       message: input,
       name: user.displayName,
-      timestamp: "Just now",
-      received: true
+      timestamp: [date.getHours(),':', date.getMinutes(), '   ', date.getDay(), '.', date.getMonth(),'.', date.getFullYear()],
+      received: true,
+      rooms: roomName
     })
 
     setInput('')
   }
+
   return (
     <div className={styled.chat}>
       <div className={styled.header}>
         <Avatar src={`http://avatars.dicebear.com/api/human/${seed}.svg`}/>
-
         <div className={styled.headerInfo}>
           <h3>{roomName}</h3>
-          <p>Last seen at....</p>
+          <p>Last seen at...</p>
         </div>
         <div className={styled.headerRight}>
           <IconButton>
@@ -73,7 +76,6 @@ const Chat = ({messages})=> {
           </p>
         ))}
       </div>
-
       <div className={styled.footer}>
         <div className={styled.icon}><InsertEmoticon /></div>
         <form>
@@ -83,12 +85,7 @@ const Chat = ({messages})=> {
             placeholder='Type a message'
             type='text' 
           />
-          <button 
-            onClick={sendMessage} 
-            type='submit'
-            >
-            Send a message
-          </button>
+          <button onClick={sendMessage} type='submit'/>
         </form>
         <div className={styled.icon}><MicIcon /></div>
       </div>
