@@ -53,7 +53,7 @@ const Chat = ({messages})=> {
         <Avatar src={`http://avatars.dicebear.com/api/human/${seed}.svg`}/>
         <div className={styled.headerInfo}>
           <h3>{roomName}</h3>
-          <p>Last seen at...</p>
+          <p>Last seen at...{messages[messages.length -1]?.timestamp}</p>
         </div>
         <div className={styled.headerRight}>
           <IconButton>
