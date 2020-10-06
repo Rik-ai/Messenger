@@ -14,33 +14,33 @@ function App() {
 
 
   useEffect(() => {
-  axios.get('/messages/sync')
-    .then(response=>{
-      setMessages(response.data)
-    })
-}, [])
+    axios.get('/messages/sync')
+      .then(response=>{
+        setMessages(response.data)
+      })
+  }, [])
   useEffect(() => {
     const pusher = new Pusher('2cff151ee712296fed25', {
       cluster: 'eu'
-  });
-  const channel = pusher.subscribe('messages');
+    })
+    const channel = pusher.subscribe('messages')
     channel.bind('inserted', (newMessage) => {
       setMessages([...messages, newMessage])
-  });
+    })
     return ()=>{
       channel.unbind_all()
       channel.unsubscribe()
     }
   }, [messages])
-  
+
   return (
     <div className={styled.app}>
-          {!user ? (
-      <Login/>
-    ):(
-      <div className={styled.body}>
-      <Router>
-          <Sidebar />
+      {!user ? (
+        <Login/>
+      ):(
+        <div className={styled.body}>
+          <Router>
+            <Sidebar />
             <Switch>
               <Route path="/rooms/:roomId">
                 <Chat messages={messages}/>
@@ -48,8 +48,8 @@ function App() {
               <Route path="/">{/* <Chat /> */}</Route>
             </Switch>
           </Router>
-      </div>
-    )}
+        </div>
+      )}
     </div>
   )
 }
